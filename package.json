@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "apollo-server": "^3.3.0",
+    "bcryptjs": "^2.4.3",
     "graphql": "^15.5.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.5"
   },
   "name": "merng",
@@ -11,7 +13,7 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
-    "start":"nodemon index"
+    "start": "nodemon index"
   },
   "keywords": [],
   "author": "",
