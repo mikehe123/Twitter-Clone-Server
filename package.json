@@ -13,6 +13,7 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
+    "serve":"node index",
     "start": "nodemon index"
   },
   "keywords": [],
