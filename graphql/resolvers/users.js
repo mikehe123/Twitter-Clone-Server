@@ -8,6 +8,7 @@ const {
 } = require("../../util/validators");
 const { SECRET_KEY } = require("../../config");
 const User = require("../../models/User");
+
 function generateToken(user) {
   return jwt.sign(
     {
@@ -24,11 +25,12 @@ module.exports = {
   Mutation: {
     async login(_, { username, password }) {
       const { errors, valid } = validateLoginInput(username, password);
-      const user = await User.findOne({ username });
 
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
+
+      const user = await User.findOne({ username });
 
       if (!user) {
         errors.general = "User not found";
@@ -38,7 +40,7 @@ module.exports = {
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
         errors.general = "Wrong crendetials";
-        throw new UserInputError("Wrong crendetails", { errors });
+        throw new UserInputError("Wrong crendetials", { errors });
       }
 
       const token = generateToken(user);
@@ -53,20 +55,17 @@ module.exports = {
       _,
       { registerInput: { username, email, password, confirmPassword } }
     ) {
-      //TODO: Validate user data - password unmatch
+      // Validate user data
       const { valid, errors } = validateRegisterInput(
         username,
         email,
         password,
         confirmPassword
       );
-
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
-      //TODO: Make sure user doesn't already exist
-      //TODO: hash password and create an auth token
-
+      // TODO: Make sure user doesnt already exist
       const user = await User.findOne({ username });
       if (user) {
         throw new UserInputError("Username is taken", {
@@ -75,15 +74,18 @@ module.exports = {
           },
         });
       }
+      // hash password and create an auth token
       password = await bcrypt.hash(password, 12);
+
       const newUser = new User({
         email,
         username,
         password,
-        createdAt: new Date().toISOString,
+        createdAt: new Date().toISOString(),
       });
 
       const res = await newUser.save();
+
       const token = generateToken(res);
 
       return {
