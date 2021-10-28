@@ -1,5 +1,5 @@
 # Twitter-Clone-Server
-Twitter Clone is a full stack social media website that let users post, like, and comment on tweets. For the server side, it used Apollo Server combined with MongoDB (Atlas) to create GraphQL APIs for app functionalities. This code based is currently deployed at Heroku. (Credit to Ahmed Hadjou and FreeCodeCamp for the GraphQL tutorial)
+Twitter Clone is a full stack social media website that let users post, like, and comment on tweets. For the server side, it used Apollo Server combined with MongoDB (Atlas) to create GraphQL APIs for app functionalities. This codebase is currently deployed at Heroku. (Credit to Ahmed Hadjou and FreeCodeCamp for the GraphQL tutorial)
 
 :desktop_computer: Server URL: https://git.heroku.com/frozen-atoll-62502.git
 
